@@ -1,0 +1,31 @@
+{
+  "name": "twohelixes",
+  "version": "0.1.0",
+  "description": "Tiny tracking + reporting client for twoHelixes product analytics (browser, Node, Bun)",
+  "license": "MIT",
+  "author": "Lee Penkman",
+  "type": "module",
+  "repository": "github:lee101/twohelixes-js",
+  "homepage": "https://twohelixes.com",
+  "keywords": ["analytics", "tracking", "funnel", "events", "twohelixes"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "bun": "./src/index.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir dist --target browser --format esm --minify && tsc --emitDeclarationOnly -p .",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run typecheck && bun test && bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.6.0"
+  }
+}
